@@ -277,35 +277,62 @@ export default function XRayAnalysisPage() {
       const b64 = await getBase64(imageFile);
       const headers = { 'Content-Type': 'application/json' };
 
-      // ── /run/predict — universal sync endpoint (all Gradio versions) ────
-      const res = await fetch(`${HF_BASE}/run/predict`, {
+      // ── Step 1: submit to /gradio_api/call/predict ───────────────────────
+      // Image must be sent as a Gradio FileData object with base64 in "url"
+      const imageData = { url: b64, meta: { _type: 'gradio.FileData' } };
+
+      const submitRes = await fetch(`${HF_BASE}/gradio_api/call/predict`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ data: [b64, ENSEMBLE_MODEL] }),
+        body: JSON.stringify({ data: [imageData, ENSEMBLE_MODEL] }),
       });
 
-      const raw = await res.text();
-      if (!res.ok) {
-        if (res.status === 503 || raw.toLowerCase().includes('your space') || raw.startsWith('<')) {
+      const submitRaw = await submitRes.text();
+      if (!submitRes.ok) {
+        if (submitRes.status === 503 || submitRaw.toLowerCase().includes('your space') || submitRaw.startsWith('<')) {
           throw new Error('🔄 HF Space is still building or sleeping — please wait 1–2 minutes and try again.');
         }
         let errMsg = 'HF Space request failed.';
-        try { errMsg = JSON.parse(raw).error || errMsg; } catch {}
+        try { errMsg = JSON.parse(submitRaw).detail || JSON.parse(submitRaw).error || errMsg; } catch {}
         throw new Error(errMsg);
       }
-      let payload;
-      try { payload = JSON.parse(raw); } catch {
-        throw new Error('🔄 HF Space returned an unexpected response — it may still be starting up.');
+      let eventId;
+      try { eventId = JSON.parse(submitRaw).event_id; } catch {
+        throw new Error('🔄 Unexpected response from HF Space — try again in a moment.');
+      }
+      if (!eventId) throw new Error('No event_id returned from HF Space.');
+
+      // ── Step 2: stream SSE result from /gradio_api/call/predict/{event_id}
+      const streamRes = await fetch(`${HF_BASE}/gradio_api/call/predict/${eventId}`);
+      if (!streamRes.ok) throw new Error(`Stream error: ${streamRes.status}`);
+
+      const sseText = await streamRes.text();
+      // SSE format: lines starting with "data:" — take the last non-null one
+      const dataLines = sseText
+        .split('\n')
+        .filter(l => l.startsWith('data:'))
+        .map(l => l.slice(5).trim())
+        .filter(l => l && l !== 'null');
+      if (!dataLines.length) throw new Error('No data received from HF Space.');
+
+      let out;
+      try {
+        // Result is a JSON array: [LabelData]
+        const parsed = JSON.parse(dataLines[dataLines.length - 1]);
+        out = Array.isArray(parsed) ? parsed[0] : parsed;
+      } catch {
+        throw new Error('Could not parse HF Space response.');
       }
 
       const inferenceMs = performance.now() - start;
-      const out = payload.data?.[0];
 
+      // out = { label: "PNEUMONIA", confidences: [{label, confidence}, ...] }
       let results = [];
       if (out && out.confidences) {
-        results = out.confidences.map(c => ({ label: c.label, score: c.confidence ?? c.score }));
-      } else if (out && typeof out === 'object' && !Array.isArray(out)) {
-        results = Object.entries(out).map(([label, score]) => ({ label, score }));
+        results = out.confidences.map(c => ({ label: c.label, score: c.confidence ?? c.score ?? 0 }));
+      } else if (out && out.label) {
+        // fallback: only top label returned
+        results = [{ label: out.label, score: 1.0 }];
       } else {
         throw new Error('Unexpected output format from Gradio API.');
       }
@@ -333,7 +360,7 @@ export default function XRayAnalysisPage() {
           setGradCamClass(predicted);
         });
       } else {
-        throw new Error('Invalid response format from Hugging Face');
+        throw new Error('Invalid response from Hugging Face');
       }
     } catch (e) {
       setHfError(e.message);
