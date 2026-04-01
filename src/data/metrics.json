@@ -1,0 +1,2284 @@
+{
+  "resnet50": {
+    "DS1_Standard": {
+      "overall": {
+        "Accuracy": 0.8856,
+        "Balanced_Accuracy": 0.8854,
+        "Macro_Precision": 0.8975,
+        "Macro_Recall": 0.8854,
+        "Macro_F1": 0.8833,
+        "Weighted_F1": 0.8828,
+        "Cohen_Kappa": 0.8283,
+        "MCC": 0.8357,
+        "Macro_AUC": 0.9747,
+        "Top2_Accuracy": 0.9795
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.8944,
+          "Precision": 0.7857,
+          "Recall": 0.9483,
+          "Sensitivity": 0.9483,
+          "Specificity": 0.8667,
+          "F1_Score": 0.8594,
+          "PPV": 0.7857,
+          "NPV": 0.9701,
+          "AUC": 0.9728,
+          "Support": 116,
+          "TP": 110,
+          "FP": 30,
+          "FN": 6,
+          "TN": 195
+        },
+        "NORMAL": {
+          "Accuracy": 0.9883,
+          "Precision": 0.9655,
+          "Recall": 1.0,
+          "Sensitivity": 1.0,
+          "Specificity": 0.9825,
+          "F1_Score": 0.9825,
+          "PPV": 0.9655,
+          "NPV": 1.0,
+          "AUC": 0.9994,
+          "Support": 112,
+          "TP": 112,
+          "FP": 4,
+          "FN": 0,
+          "TN": 225
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.8886,
+          "Precision": 0.9412,
+          "Recall": 0.708,
+          "Sensitivity": 0.708,
+          "Specificity": 0.9781,
+          "F1_Score": 0.8081,
+          "PPV": 0.9412,
+          "NPV": 0.8711,
+          "AUC": 0.9518,
+          "Support": 113,
+          "TP": 80,
+          "FP": 5,
+          "FN": 33,
+          "TN": 223
+        }
+      },
+      "confusion_matrix": [
+        [
+          110,
+          1,
+          5
+        ],
+        [
+          0,
+          112,
+          0
+        ],
+        [
+          30,
+          3,
+          80
+        ]
+      ]
+    },
+    "DS2_PA_View": {
+      "overall": {
+        "Accuracy": 0.5849,
+        "Balanced_Accuracy": 0.5849,
+        "Macro_Precision": 0.545,
+        "Macro_Recall": 0.5849,
+        "Macro_F1": 0.5473,
+        "Weighted_F1": 0.5473,
+        "Cohen_Kappa": 0.3774,
+        "MCC": 0.3905,
+        "Macro_AUC": 0.7949,
+        "Top2_Accuracy": 0.8118
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.7377,
+          "Precision": 0.5938,
+          "Recall": 0.6748,
+          "Sensitivity": 0.6748,
+          "Specificity": 0.7692,
+          "F1_Score": 0.6317,
+          "PPV": 0.5938,
+          "NPV": 0.8255,
+          "AUC": 0.8383,
+          "Support": 1525,
+          "TP": 1029,
+          "FP": 704,
+          "FN": 496,
+          "TN": 2346
+        },
+        "NORMAL": {
+          "Accuracy": 0.8013,
+          "Precision": 0.6484,
+          "Recall": 0.8826,
+          "Sensitivity": 0.8826,
+          "Specificity": 0.7607,
+          "F1_Score": 0.7476,
+          "PPV": 0.6484,
+          "NPV": 0.9284,
+          "AUC": 0.8948,
+          "Support": 1525,
+          "TP": 1346,
+          "FP": 730,
+          "FN": 179,
+          "TN": 2320
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.6308,
+          "Precision": 0.393,
+          "Recall": 0.1974,
+          "Sensitivity": 0.1974,
+          "Specificity": 0.8475,
+          "F1_Score": 0.2628,
+          "PPV": 0.393,
+          "NPV": 0.6787,
+          "AUC": 0.6516,
+          "Support": 1525,
+          "TP": 301,
+          "FP": 465,
+          "FN": 1224,
+          "TN": 2585
+        }
+      },
+      "confusion_matrix": [
+        [
+          1029,
+          188,
+          308
+        ],
+        [
+          22,
+          1346,
+          157
+        ],
+        [
+          682,
+          542,
+          301
+        ]
+      ]
+    },
+    "DS4a_QU_Lung": {
+      "overall": {
+        "Accuracy": 0.749,
+        "Balanced_Accuracy": 0.7558,
+        "Macro_Precision": 0.7717,
+        "Macro_Recall": 0.7558,
+        "Macro_F1": 0.746,
+        "Weighted_F1": 0.7443,
+        "Cohen_Kappa": 0.6256,
+        "MCC": 0.6421,
+        "Macro_AUC": 0.9187,
+        "Top2_Accuracy": 0.8982
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.8125,
+          "Precision": 0.8254,
+          "Recall": 0.5942,
+          "Sensitivity": 0.5942,
+          "Specificity": 0.9315,
+          "F1_Score": 0.6909,
+          "PPV": 0.8254,
+          "NPV": 0.8081,
+          "AUC": 0.8921,
+          "Support": 2395,
+          "TP": 1423,
+          "FP": 301,
+          "FN": 972,
+          "TN": 4092
+        },
+        "NORMAL": {
+          "Accuracy": 0.8279,
+          "Precision": 0.6545,
+          "Recall": 0.9621,
+          "Sensitivity": 0.9621,
+          "Specificity": 0.7661,
+          "F1_Score": 0.779,
+          "PPV": 0.6545,
+          "NPV": 0.9778,
+          "AUC": 0.9469,
+          "Support": 2140,
+          "TP": 2059,
+          "FP": 1087,
+          "FN": 81,
+          "TN": 3561
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.8575,
+          "Precision": 0.8352,
+          "Recall": 0.7111,
+          "Sensitivity": 0.7111,
+          "Specificity": 0.9303,
+          "F1_Score": 0.7682,
+          "PPV": 0.8352,
+          "NPV": 0.8663,
+          "AUC": 0.9172,
+          "Support": 2253,
+          "TP": 1602,
+          "FP": 316,
+          "FN": 651,
+          "TN": 4219
+        }
+      },
+      "confusion_matrix": [
+        [
+          1423,
+          726,
+          246
+        ],
+        [
+          11,
+          2059,
+          70
+        ],
+        [
+          290,
+          361,
+          1602
+        ]
+      ]
+    },
+    "DS4b_QU_Infection": {
+      "overall": {
+        "Accuracy": 0.8233,
+        "Balanced_Accuracy": 0.8263,
+        "Macro_Precision": 0.8042,
+        "Macro_Recall": 0.8263,
+        "Macro_F1": 0.8098,
+        "Weighted_F1": 0.8236,
+        "Cohen_Kappa": 0.7238,
+        "MCC": 0.7286,
+        "Macro_AUC": 0.9543,
+        "Top2_Accuracy": 0.9365
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.8731,
+          "Precision": 0.9223,
+          "Recall": 0.8148,
+          "Sensitivity": 0.8148,
+          "Specificity": 0.9314,
+          "F1_Score": 0.8652,
+          "PPV": 0.9223,
+          "NPV": 0.8341,
+          "AUC": 0.9616,
+          "Support": 583,
+          "TP": 475,
+          "FP": 40,
+          "FN": 108,
+          "TN": 543
+        },
+        "NORMAL": {
+          "Accuracy": 0.9065,
+          "Precision": 0.7446,
+          "Recall": 0.9519,
+          "Sensitivity": 0.9519,
+          "Specificity": 0.8914,
+          "F1_Score": 0.8356,
+          "PPV": 0.7446,
+          "NPV": 0.9824,
+          "AUC": 0.9814,
+          "Support": 291,
+          "TP": 277,
+          "FP": 95,
+          "FN": 14,
+          "TN": 780
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.8671,
+          "Precision": 0.7455,
+          "Recall": 0.7123,
+          "Sensitivity": 0.7123,
+          "Specificity": 0.9188,
+          "F1_Score": 0.7285,
+          "PPV": 0.7455,
+          "NPV": 0.9053,
+          "AUC": 0.92,
+          "Support": 292,
+          "TP": 208,
+          "FP": 71,
+          "FN": 84,
+          "TN": 803
+        }
+      },
+      "confusion_matrix": [
+        [
+          475,
+          51,
+          57
+        ],
+        [
+          0,
+          277,
+          14
+        ],
+        [
+          40,
+          44,
+          208
+        ]
+      ]
+    }
+  },
+  "resnet18": {
+    "DS1_Standard": {
+      "overall": {
+        "Accuracy": 0.8915,
+        "Balanced_Accuracy": 0.8914,
+        "Macro_Precision": 0.8978,
+        "Macro_Recall": 0.8914,
+        "Macro_F1": 0.8897,
+        "Weighted_F1": 0.8893,
+        "Cohen_Kappa": 0.8371,
+        "MCC": 0.8416,
+        "Macro_AUC": 0.977,
+        "Top2_Accuracy": 0.9853
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.9062,
+          "Precision": 0.8134,
+          "Recall": 0.9397,
+          "Sensitivity": 0.9397,
+          "Specificity": 0.8889,
+          "F1_Score": 0.872,
+          "PPV": 0.8134,
+          "NPV": 0.9662,
+          "AUC": 0.9734,
+          "Support": 116,
+          "TP": 109,
+          "FP": 25,
+          "FN": 7,
+          "TN": 200
+        },
+        "NORMAL": {
+          "Accuracy": 0.9824,
+          "Precision": 0.9569,
+          "Recall": 0.9911,
+          "Sensitivity": 0.9911,
+          "Specificity": 0.9782,
+          "F1_Score": 0.9737,
+          "PPV": 0.9569,
+          "NPV": 0.9956,
+          "AUC": 0.9992,
+          "Support": 112,
+          "TP": 111,
+          "FP": 5,
+          "FN": 1,
+          "TN": 224
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.8944,
+          "Precision": 0.9231,
+          "Recall": 0.7434,
+          "Sensitivity": 0.7434,
+          "Specificity": 0.9693,
+          "F1_Score": 0.8235,
+          "PPV": 0.9231,
+          "NPV": 0.884,
+          "AUC": 0.9585,
+          "Support": 113,
+          "TP": 84,
+          "FP": 7,
+          "FN": 29,
+          "TN": 221
+        }
+      },
+      "confusion_matrix": [
+        [
+          109,
+          1,
+          6
+        ],
+        [
+          0,
+          111,
+          1
+        ],
+        [
+          25,
+          4,
+          84
+        ]
+      ]
+    },
+    "DS2_PA_View": {
+      "overall": {
+        "Accuracy": 0.5659,
+        "Balanced_Accuracy": 0.5659,
+        "Macro_Precision": 0.5125,
+        "Macro_Recall": 0.5659,
+        "Macro_F1": 0.5254,
+        "Weighted_F1": 0.5254,
+        "Cohen_Kappa": 0.3489,
+        "MCC": 0.36,
+        "Macro_AUC": 0.775,
+        "Top2_Accuracy": 0.819
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.7325,
+          "Precision": 0.5862,
+          "Recall": 0.6708,
+          "Sensitivity": 0.6708,
+          "Specificity": 0.7633,
+          "F1_Score": 0.6257,
+          "PPV": 0.5862,
+          "NPV": 0.8226,
+          "AUC": 0.8345,
+          "Support": 1525,
+          "TP": 1023,
+          "FP": 722,
+          "FN": 502,
+          "TN": 2328
+        },
+        "NORMAL": {
+          "Accuracy": 0.8022,
+          "Precision": 0.6521,
+          "Recall": 0.8715,
+          "Sensitivity": 0.8715,
+          "Specificity": 0.7675,
+          "F1_Score": 0.746,
+          "PPV": 0.6521,
+          "NPV": 0.9227,
+          "AUC": 0.8906,
+          "Support": 1525,
+          "TP": 1329,
+          "FP": 709,
+          "FN": 196,
+          "TN": 2341
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.5972,
+          "Precision": 0.2992,
+          "Recall": 0.1554,
+          "Sensitivity": 0.1554,
+          "Specificity": 0.818,
+          "F1_Score": 0.2046,
+          "PPV": 0.2992,
+          "NPV": 0.6595,
+          "AUC": 0.6,
+          "Support": 1525,
+          "TP": 237,
+          "FP": 555,
+          "FN": 1288,
+          "TN": 2495
+        }
+      },
+      "confusion_matrix": [
+        [
+          1023,
+          142,
+          360
+        ],
+        [
+          1,
+          1329,
+          195
+        ],
+        [
+          721,
+          567,
+          237
+        ]
+      ]
+    },
+    "DS4a_QU_Lung": {
+      "overall": {
+        "Accuracy": 0.7169,
+        "Balanced_Accuracy": 0.7244,
+        "Macro_Precision": 0.7319,
+        "Macro_Recall": 0.7244,
+        "Macro_F1": 0.7112,
+        "Weighted_F1": 0.7086,
+        "Cohen_Kappa": 0.5778,
+        "MCC": 0.5926,
+        "Macro_AUC": 0.9078,
+        "Top2_Accuracy": 0.8829
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.7834,
+          "Precision": 0.7768,
+          "Recall": 0.542,
+          "Sensitivity": 0.542,
+          "Specificity": 0.9151,
+          "F1_Score": 0.6385,
+          "PPV": 0.7768,
+          "NPV": 0.7856,
+          "AUC": 0.8884,
+          "Support": 2395,
+          "TP": 1298,
+          "FP": 373,
+          "FN": 1097,
+          "TN": 4020
+        },
+        "NORMAL": {
+          "Accuracy": 0.8253,
+          "Precision": 0.6532,
+          "Recall": 0.9505,
+          "Sensitivity": 0.9505,
+          "Specificity": 0.7676,
+          "F1_Score": 0.7743,
+          "PPV": 0.6532,
+          "NPV": 0.9711,
+          "AUC": 0.9449,
+          "Support": 2140,
+          "TP": 2034,
+          "FP": 1080,
+          "FN": 106,
+          "TN": 3568
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.825,
+          "Precision": 0.7659,
+          "Recall": 0.6809,
+          "Sensitivity": 0.6809,
+          "Specificity": 0.8966,
+          "F1_Score": 0.7209,
+          "PPV": 0.7659,
+          "NPV": 0.8497,
+          "AUC": 0.8903,
+          "Support": 2253,
+          "TP": 1534,
+          "FP": 469,
+          "FN": 719,
+          "TN": 4066
+        }
+      },
+      "confusion_matrix": [
+        [
+          1298,
+          720,
+          377
+        ],
+        [
+          14,
+          2034,
+          92
+        ],
+        [
+          359,
+          360,
+          1534
+        ]
+      ]
+    },
+    "DS4b_QU_Infection": {
+      "overall": {
+        "Accuracy": 0.7907,
+        "Balanced_Accuracy": 0.8,
+        "Macro_Precision": 0.7701,
+        "Macro_Recall": 0.8,
+        "Macro_F1": 0.7789,
+        "Weighted_F1": 0.7908,
+        "Cohen_Kappa": 0.6752,
+        "MCC": 0.6811,
+        "Macro_AUC": 0.936,
+        "Top2_Accuracy": 0.9331
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.8405,
+          "Precision": 0.9026,
+          "Recall": 0.7633,
+          "Sensitivity": 0.7633,
+          "Specificity": 0.9177,
+          "F1_Score": 0.8271,
+          "PPV": 0.9026,
+          "NPV": 0.7949,
+          "AUC": 0.9425,
+          "Support": 583,
+          "TP": 445,
+          "FP": 48,
+          "FN": 138,
+          "TN": 535
+        },
+        "NORMAL": {
+          "Accuracy": 0.9099,
+          "Precision": 0.75,
+          "Recall": 0.9588,
+          "Sensitivity": 0.9588,
+          "Specificity": 0.8937,
+          "F1_Score": 0.8416,
+          "PPV": 0.75,
+          "NPV": 0.9849,
+          "AUC": 0.9812,
+          "Support": 291,
+          "TP": 279,
+          "FP": 93,
+          "FN": 12,
+          "TN": 782
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.831,
+          "Precision": 0.6578,
+          "Recall": 0.6781,
+          "Sensitivity": 0.6781,
+          "Specificity": 0.8822,
+          "F1_Score": 0.6678,
+          "PPV": 0.6578,
+          "NPV": 0.8913,
+          "AUC": 0.8842,
+          "Support": 292,
+          "TP": 198,
+          "FP": 103,
+          "FN": 94,
+          "TN": 771
+        }
+      },
+      "confusion_matrix": [
+        [
+          445,
+          46,
+          92
+        ],
+        [
+          1,
+          279,
+          11
+        ],
+        [
+          47,
+          47,
+          198
+        ]
+      ]
+    }
+  },
+  "densenet121": {
+    "DS1_Standard": {
+      "overall": {
+        "Accuracy": 0.9032,
+        "Balanced_Accuracy": 0.903,
+        "Macro_Precision": 0.9087,
+        "Macro_Recall": 0.903,
+        "Macro_F1": 0.9003,
+        "Weighted_F1": 0.9002,
+        "Cohen_Kappa": 0.8548,
+        "MCC": 0.8596,
+        "Macro_AUC": 0.9806,
+        "Top2_Accuracy": 0.9619
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.9326,
+          "Precision": 0.8605,
+          "Recall": 0.9569,
+          "Sensitivity": 0.9569,
+          "Specificity": 0.92,
+          "F1_Score": 0.9061,
+          "PPV": 0.8605,
+          "NPV": 0.9764,
+          "AUC": 0.9834,
+          "Support": 116,
+          "TP": 111,
+          "FP": 18,
+          "FN": 5,
+          "TN": 207
+        },
+        "NORMAL": {
+          "Accuracy": 0.9677,
+          "Precision": 0.9106,
+          "Recall": 1.0,
+          "Sensitivity": 1.0,
+          "Specificity": 0.952,
+          "F1_Score": 0.9532,
+          "PPV": 0.9106,
+          "NPV": 1.0,
+          "AUC": 0.9994,
+          "Support": 112,
+          "TP": 112,
+          "FP": 11,
+          "FN": 0,
+          "TN": 218
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.9062,
+          "Precision": 0.9551,
+          "Recall": 0.7522,
+          "Sensitivity": 0.7522,
+          "Specificity": 0.9825,
+          "F1_Score": 0.8416,
+          "PPV": 0.9551,
+          "NPV": 0.8889,
+          "AUC": 0.9589,
+          "Support": 113,
+          "TP": 85,
+          "FP": 4,
+          "FN": 28,
+          "TN": 224
+        }
+      },
+      "confusion_matrix": [
+        [
+          111,
+          1,
+          4
+        ],
+        [
+          0,
+          112,
+          0
+        ],
+        [
+          18,
+          10,
+          85
+        ]
+      ]
+    },
+    "DS2_PA_View": {
+      "overall": {
+        "Accuracy": 0.5572,
+        "Balanced_Accuracy": 0.5572,
+        "Macro_Precision": 0.5505,
+        "Macro_Recall": 0.5572,
+        "Macro_F1": 0.5101,
+        "Weighted_F1": 0.5101,
+        "Cohen_Kappa": 0.3357,
+        "MCC": 0.3777,
+        "Macro_AUC": 0.7727,
+        "Top2_Accuracy": 0.7464
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.8396,
+          "Precision": 0.8299,
+          "Recall": 0.6525,
+          "Sensitivity": 0.6525,
+          "Specificity": 0.9331,
+          "F1_Score": 0.7305,
+          "PPV": 0.8299,
+          "NPV": 0.843,
+          "AUC": 0.8651,
+          "Support": 1525,
+          "TP": 995,
+          "FP": 204,
+          "FN": 530,
+          "TN": 2846
+        },
+        "NORMAL": {
+          "Accuracy": 0.6439,
+          "Precision": 0.4818,
+          "Recall": 0.9049,
+          "Sensitivity": 0.9049,
+          "Specificity": 0.5134,
+          "F1_Score": 0.6288,
+          "PPV": 0.4818,
+          "NPV": 0.9153,
+          "AUC": 0.8455,
+          "Support": 1525,
+          "TP": 1380,
+          "FP": 1484,
+          "FN": 145,
+          "TN": 1566
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.6308,
+          "Precision": 0.3398,
+          "Recall": 0.1141,
+          "Sensitivity": 0.1141,
+          "Specificity": 0.8892,
+          "F1_Score": 0.1708,
+          "PPV": 0.3398,
+          "NPV": 0.6675,
+          "AUC": 0.6075,
+          "Support": 1525,
+          "TP": 174,
+          "FP": 338,
+          "FN": 1351,
+          "TN": 2712
+        }
+      },
+      "confusion_matrix": [
+        [
+          995,
+          331,
+          199
+        ],
+        [
+          6,
+          1380,
+          139
+        ],
+        [
+          198,
+          1153,
+          174
+        ]
+      ]
+    },
+    "DS4a_QU_Lung": {
+      "overall": {
+        "Accuracy": 0.737,
+        "Balanced_Accuracy": 0.7438,
+        "Macro_Precision": 0.7886,
+        "Macro_Recall": 0.7438,
+        "Macro_F1": 0.7359,
+        "Weighted_F1": 0.7358,
+        "Cohen_Kappa": 0.6086,
+        "MCC": 0.637,
+        "Macro_AUC": 0.9273,
+        "Top2_Accuracy": 0.9054
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.8463,
+          "Precision": 0.9373,
+          "Recall": 0.605,
+          "Sensitivity": 0.605,
+          "Specificity": 0.9779,
+          "F1_Score": 0.7353,
+          "PPV": 0.9373,
+          "NPV": 0.8195,
+          "AUC": 0.9426,
+          "Support": 2395,
+          "TP": 1449,
+          "FP": 97,
+          "FN": 946,
+          "TN": 4296
+        },
+        "NORMAL": {
+          "Accuracy": 0.7895,
+          "Precision": 0.6024,
+          "Recall": 0.9771,
+          "Sensitivity": 0.9771,
+          "Specificity": 0.7031,
+          "F1_Score": 0.7453,
+          "PPV": 0.6024,
+          "NPV": 0.9852,
+          "AUC": 0.9552,
+          "Support": 2140,
+          "TP": 2091,
+          "FP": 1380,
+          "FN": 49,
+          "TN": 3268
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.8382,
+          "Precision": 0.8261,
+          "Recall": 0.6494,
+          "Sensitivity": 0.6494,
+          "Specificity": 0.9321,
+          "F1_Score": 0.7271,
+          "PPV": 0.8261,
+          "NPV": 0.8425,
+          "AUC": 0.884,
+          "Support": 2253,
+          "TP": 1463,
+          "FP": 308,
+          "FN": 790,
+          "TN": 4227
+        }
+      },
+      "confusion_matrix": [
+        [
+          1449,
+          679,
+          267
+        ],
+        [
+          8,
+          2091,
+          41
+        ],
+        [
+          89,
+          701,
+          1463
+        ]
+      ]
+    },
+    "DS4b_QU_Infection": {
+      "overall": {
+        "Accuracy": 0.8199,
+        "Balanced_Accuracy": 0.8178,
+        "Macro_Precision": 0.8015,
+        "Macro_Recall": 0.8178,
+        "Macro_F1": 0.7981,
+        "Weighted_F1": 0.8207,
+        "Cohen_Kappa": 0.7197,
+        "MCC": 0.7295,
+        "Macro_AUC": 0.9509,
+        "Top2_Accuracy": 0.9417
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.8962,
+          "Precision": 0.9602,
+          "Recall": 0.8268,
+          "Sensitivity": 0.8268,
+          "Specificity": 0.9657,
+          "F1_Score": 0.8885,
+          "PPV": 0.9602,
+          "NPV": 0.8479,
+          "AUC": 0.9784,
+          "Support": 583,
+          "TP": 482,
+          "FP": 20,
+          "FN": 101,
+          "TN": 563
+        },
+        "NORMAL": {
+          "Accuracy": 0.8842,
+          "Precision": 0.6884,
+          "Recall": 0.9794,
+          "Sensitivity": 0.9794,
+          "Specificity": 0.8526,
+          "F1_Score": 0.8085,
+          "PPV": 0.6884,
+          "NPV": 0.992,
+          "AUC": 0.9827,
+          "Support": 291,
+          "TP": 285,
+          "FP": 129,
+          "FN": 6,
+          "TN": 746
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.8593,
+          "Precision": 0.756,
+          "Recall": 0.6473,
+          "Sensitivity": 0.6473,
+          "Specificity": 0.9302,
+          "F1_Score": 0.6974,
+          "PPV": 0.756,
+          "NPV": 0.8876,
+          "AUC": 0.8915,
+          "Support": 292,
+          "TP": 189,
+          "FP": 61,
+          "FN": 103,
+          "TN": 813
+        }
+      },
+      "confusion_matrix": [
+        [
+          482,
+          46,
+          55
+        ],
+        [
+          0,
+          285,
+          6
+        ],
+        [
+          20,
+          83,
+          189
+        ]
+      ]
+    }
+  },
+  "vgg16": {
+    "DS1_Standard": {
+      "overall": {
+        "Accuracy": 0.868,
+        "Balanced_Accuracy": 0.8674,
+        "Macro_Precision": 0.8901,
+        "Macro_Recall": 0.8674,
+        "Macro_F1": 0.8648,
+        "Weighted_F1": 0.8644,
+        "Cohen_Kappa": 0.8018,
+        "MCC": 0.8148,
+        "Macro_AUC": 0.9421,
+        "Top2_Accuracy": 0.9971
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.8798,
+          "Precision": 0.7483,
+          "Recall": 0.9741,
+          "Sensitivity": 0.9741,
+          "Specificity": 0.8311,
+          "F1_Score": 0.8464,
+          "PPV": 0.7483,
+          "NPV": 0.9842,
+          "AUC": 0.9645,
+          "Support": 116,
+          "TP": 113,
+          "FP": 38,
+          "FN": 3,
+          "TN": 187
+        },
+        "NORMAL": {
+          "Accuracy": 0.9824,
+          "Precision": 0.9732,
+          "Recall": 0.9732,
+          "Sensitivity": 0.9732,
+          "Specificity": 0.9869,
+          "F1_Score": 0.9732,
+          "PPV": 0.9732,
+          "NPV": 0.9869,
+          "AUC": 0.9991,
+          "Support": 112,
+          "TP": 109,
+          "FP": 3,
+          "FN": 3,
+          "TN": 226
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.8739,
+          "Precision": 0.9487,
+          "Recall": 0.6549,
+          "Sensitivity": 0.6549,
+          "Specificity": 0.9825,
+          "F1_Score": 0.7749,
+          "PPV": 0.9487,
+          "NPV": 0.8517,
+          "AUC": 0.8629,
+          "Support": 113,
+          "TP": 74,
+          "FP": 4,
+          "FN": 39,
+          "TN": 224
+        }
+      },
+      "confusion_matrix": [
+        [
+          113,
+          0,
+          3
+        ],
+        [
+          2,
+          109,
+          1
+        ],
+        [
+          36,
+          3,
+          74
+        ]
+      ]
+    },
+    "DS2_PA_View": {
+      "overall": {
+        "Accuracy": 0.5786,
+        "Balanced_Accuracy": 0.5786,
+        "Macro_Precision": 0.5169,
+        "Macro_Recall": 0.5786,
+        "Macro_F1": 0.5217,
+        "Weighted_F1": 0.5217,
+        "Cohen_Kappa": 0.3679,
+        "MCC": 0.3896,
+        "Macro_AUC": 0.776,
+        "Top2_Accuracy": 0.809
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.7635,
+          "Precision": 0.6248,
+          "Recall": 0.7272,
+          "Sensitivity": 0.7272,
+          "Specificity": 0.7816,
+          "F1_Score": 0.6721,
+          "PPV": 0.6248,
+          "NPV": 0.8514,
+          "AUC": 0.8633,
+          "Support": 1525,
+          "TP": 1109,
+          "FP": 666,
+          "FN": 416,
+          "TN": 2384
+        },
+        "NORMAL": {
+          "Accuracy": 0.7709,
+          "Precision": 0.6063,
+          "Recall": 0.8918,
+          "Sensitivity": 0.8918,
+          "Specificity": 0.7105,
+          "F1_Score": 0.7219,
+          "PPV": 0.6063,
+          "NPV": 0.9292,
+          "AUC": 0.8716,
+          "Support": 1525,
+          "TP": 1360,
+          "FP": 883,
+          "FN": 165,
+          "TN": 2167
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.6227,
+          "Precision": 0.3196,
+          "Recall": 0.1167,
+          "Sensitivity": 0.1167,
+          "Specificity": 0.8757,
+          "F1_Score": 0.171,
+          "PPV": 0.3196,
+          "NPV": 0.6648,
+          "AUC": 0.5931,
+          "Support": 1525,
+          "TP": 178,
+          "FP": 379,
+          "FN": 1347,
+          "TN": 2671
+        }
+      },
+      "confusion_matrix": [
+        [
+          1109,
+          193,
+          223
+        ],
+        [
+          9,
+          1360,
+          156
+        ],
+        [
+          657,
+          690,
+          178
+        ]
+      ]
+    },
+    "DS4a_QU_Lung": {
+      "overall": {
+        "Accuracy": 0.7661,
+        "Balanced_Accuracy": 0.7709,
+        "Macro_Precision": 0.7783,
+        "Macro_Recall": 0.7709,
+        "Macro_F1": 0.7631,
+        "Weighted_F1": 0.7616,
+        "Cohen_Kappa": 0.6502,
+        "MCC": 0.6603,
+        "Macro_AUC": 0.9122,
+        "Top2_Accuracy": 0.8981
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.824,
+          "Precision": 0.7836,
+          "Recall": 0.6923,
+          "Sensitivity": 0.6923,
+          "Specificity": 0.8957,
+          "F1_Score": 0.7351,
+          "PPV": 0.7836,
+          "NPV": 0.8423,
+          "AUC": 0.9102,
+          "Support": 2395,
+          "TP": 1658,
+          "FP": 458,
+          "FN": 737,
+          "TN": 3935
+        },
+        "NORMAL": {
+          "Accuracy": 0.862,
+          "Precision": 0.7058,
+          "Recall": 0.964,
+          "Sensitivity": 0.964,
+          "Specificity": 0.815,
+          "F1_Score": 0.8149,
+          "PPV": 0.7058,
+          "NPV": 0.9801,
+          "AUC": 0.9561,
+          "Support": 2140,
+          "TP": 2063,
+          "FP": 860,
+          "FN": 77,
+          "TN": 3788
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.8462,
+          "Precision": 0.8456,
+          "Recall": 0.6565,
+          "Sensitivity": 0.6565,
+          "Specificity": 0.9405,
+          "F1_Score": 0.7391,
+          "PPV": 0.8456,
+          "NPV": 0.8464,
+          "AUC": 0.8702,
+          "Support": 2253,
+          "TP": 1479,
+          "FP": 270,
+          "FN": 774,
+          "TN": 4265
+        }
+      },
+      "confusion_matrix": [
+        [
+          1658,
+          534,
+          203
+        ],
+        [
+          10,
+          2063,
+          67
+        ],
+        [
+          448,
+          326,
+          1479
+        ]
+      ]
+    },
+    "DS4b_QU_Infection": {
+      "overall": {
+        "Accuracy": 0.8396,
+        "Balanced_Accuracy": 0.8292,
+        "Macro_Precision": 0.8187,
+        "Macro_Recall": 0.8292,
+        "Macro_F1": 0.8211,
+        "Weighted_F1": 0.837,
+        "Cohen_Kappa": 0.745,
+        "MCC": 0.7467,
+        "Macro_AUC": 0.9553,
+        "Top2_Accuracy": 0.946
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.8868,
+          "Precision": 0.8991,
+          "Recall": 0.8714,
+          "Sensitivity": 0.8714,
+          "Specificity": 0.9022,
+          "F1_Score": 0.885,
+          "PPV": 0.8991,
+          "NPV": 0.8752,
+          "AUC": 0.9654,
+          "Support": 583,
+          "TP": 508,
+          "FP": 57,
+          "FN": 75,
+          "TN": 526
+        },
+        "NORMAL": {
+          "Accuracy": 0.9357,
+          "Precision": 0.8158,
+          "Recall": 0.9588,
+          "Sensitivity": 0.9588,
+          "Specificity": 0.928,
+          "F1_Score": 0.8815,
+          "PPV": 0.8158,
+          "NPV": 0.9854,
+          "AUC": 0.9872,
+          "Support": 291,
+          "TP": 279,
+          "FP": 63,
+          "FN": 12,
+          "TN": 812
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.8568,
+          "Precision": 0.7413,
+          "Recall": 0.6575,
+          "Sensitivity": 0.6575,
+          "Specificity": 0.9233,
+          "F1_Score": 0.6969,
+          "PPV": 0.7413,
+          "NPV": 0.8897,
+          "AUC": 0.9133,
+          "Support": 292,
+          "TP": 192,
+          "FP": 67,
+          "FN": 100,
+          "TN": 807
+        }
+      },
+      "confusion_matrix": [
+        [
+          508,
+          18,
+          57
+        ],
+        [
+          2,
+          279,
+          10
+        ],
+        [
+          55,
+          45,
+          192
+        ]
+      ]
+    }
+  },
+  "efficientnet_b0": {
+    "DS1_Standard": {
+      "overall": {
+        "Accuracy": 0.9032,
+        "Balanced_Accuracy": 0.903,
+        "Macro_Precision": 0.9101,
+        "Macro_Recall": 0.903,
+        "Macro_F1": 0.8999,
+        "Weighted_F1": 0.8999,
+        "Cohen_Kappa": 0.8548,
+        "MCC": 0.8604,
+        "Macro_AUC": 0.9881,
+        "Top2_Accuracy": 0.9736
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.9355,
+          "Precision": 0.8615,
+          "Recall": 0.9655,
+          "Sensitivity": 0.9655,
+          "Specificity": 0.92,
+          "F1_Score": 0.9106,
+          "PPV": 0.8615,
+          "NPV": 0.981,
+          "AUC": 0.9882,
+          "Support": 116,
+          "TP": 112,
+          "FP": 18,
+          "FN": 4,
+          "TN": 207
+        },
+        "NORMAL": {
+          "Accuracy": 0.9648,
+          "Precision": 0.9032,
+          "Recall": 1.0,
+          "Sensitivity": 1.0,
+          "Specificity": 0.9476,
+          "F1_Score": 0.9492,
+          "PPV": 0.9032,
+          "NPV": 1.0,
+          "AUC": 0.9987,
+          "Support": 112,
+          "TP": 112,
+          "FP": 12,
+          "FN": 0,
+          "TN": 217
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.9062,
+          "Precision": 0.9655,
+          "Recall": 0.7434,
+          "Sensitivity": 0.7434,
+          "Specificity": 0.9868,
+          "F1_Score": 0.84,
+          "PPV": 0.9655,
+          "NPV": 0.8858,
+          "AUC": 0.9774,
+          "Support": 113,
+          "TP": 84,
+          "FP": 3,
+          "FN": 29,
+          "TN": 225
+        }
+      },
+      "confusion_matrix": [
+        [
+          112,
+          1,
+          3
+        ],
+        [
+          0,
+          112,
+          0
+        ],
+        [
+          18,
+          11,
+          84
+        ]
+      ]
+    },
+    "DS2_PA_View": {
+      "overall": {
+        "Accuracy": 0.5932,
+        "Balanced_Accuracy": 0.5932,
+        "Macro_Precision": 0.5479,
+        "Macro_Recall": 0.5932,
+        "Macro_F1": 0.5425,
+        "Weighted_F1": 0.5425,
+        "Cohen_Kappa": 0.3898,
+        "MCC": 0.411,
+        "Macro_AUC": 0.81,
+        "Top2_Accuracy": 0.7725
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.76,
+          "Precision": 0.6187,
+          "Recall": 0.7298,
+          "Sensitivity": 0.7298,
+          "Specificity": 0.7751,
+          "F1_Score": 0.6697,
+          "PPV": 0.6187,
+          "NPV": 0.8516,
+          "AUC": 0.8601,
+          "Support": 1525,
+          "TP": 1113,
+          "FP": 686,
+          "FN": 412,
+          "TN": 2364
+        },
+        "NORMAL": {
+          "Accuracy": 0.7849,
+          "Precision": 0.6235,
+          "Recall": 0.8957,
+          "Sensitivity": 0.8957,
+          "Specificity": 0.7295,
+          "F1_Score": 0.7352,
+          "PPV": 0.6235,
+          "NPV": 0.9333,
+          "AUC": 0.8951,
+          "Support": 1525,
+          "TP": 1366,
+          "FP": 825,
+          "FN": 159,
+          "TN": 2225
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.6415,
+          "Precision": 0.4017,
+          "Recall": 0.1541,
+          "Sensitivity": 0.1541,
+          "Specificity": 0.8852,
+          "F1_Score": 0.2227,
+          "PPV": 0.4017,
+          "NPV": 0.6767,
+          "AUC": 0.6747,
+          "Support": 1525,
+          "TP": 235,
+          "FP": 350,
+          "FN": 1290,
+          "TN": 2700
+        }
+      },
+      "confusion_matrix": [
+        [
+          1113,
+          193,
+          219
+        ],
+        [
+          28,
+          1366,
+          131
+        ],
+        [
+          658,
+          632,
+          235
+        ]
+      ]
+    },
+    "DS4a_QU_Lung": {
+      "overall": {
+        "Accuracy": 0.7628,
+        "Balanced_Accuracy": 0.7687,
+        "Macro_Precision": 0.7874,
+        "Macro_Recall": 0.7687,
+        "Macro_F1": 0.7607,
+        "Weighted_F1": 0.7597,
+        "Cohen_Kappa": 0.6461,
+        "MCC": 0.6626,
+        "Macro_AUC": 0.9285,
+        "Top2_Accuracy": 0.9081
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.8334,
+          "Precision": 0.8431,
+          "Recall": 0.6484,
+          "Sensitivity": 0.6484,
+          "Specificity": 0.9342,
+          "F1_Score": 0.7331,
+          "PPV": 0.8431,
+          "NPV": 0.8298,
+          "AUC": 0.9129,
+          "Support": 2395,
+          "TP": 1553,
+          "FP": 289,
+          "FN": 842,
+          "TN": 4104
+        },
+        "NORMAL": {
+          "Accuracy": 0.8349,
+          "Precision": 0.6619,
+          "Recall": 0.9734,
+          "Sensitivity": 0.9734,
+          "Specificity": 0.7711,
+          "F1_Score": 0.788,
+          "PPV": 0.6619,
+          "NPV": 0.9843,
+          "AUC": 0.9571,
+          "Support": 2140,
+          "TP": 2083,
+          "FP": 1064,
+          "FN": 57,
+          "TN": 3584
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.8574,
+          "Precision": 0.8571,
+          "Recall": 0.6844,
+          "Sensitivity": 0.6844,
+          "Specificity": 0.9433,
+          "F1_Score": 0.7611,
+          "PPV": 0.8571,
+          "NPV": 0.8575,
+          "AUC": 0.9155,
+          "Support": 2253,
+          "TP": 1542,
+          "FP": 257,
+          "FN": 711,
+          "TN": 4278
+        }
+      },
+      "confusion_matrix": [
+        [
+          1553,
+          630,
+          212
+        ],
+        [
+          12,
+          2083,
+          45
+        ],
+        [
+          277,
+          434,
+          1542
+        ]
+      ]
+    },
+    "DS4b_QU_Infection": {
+      "overall": {
+        "Accuracy": 0.8233,
+        "Balanced_Accuracy": 0.8241,
+        "Macro_Precision": 0.8028,
+        "Macro_Recall": 0.8241,
+        "Macro_F1": 0.8063,
+        "Weighted_F1": 0.8228,
+        "Cohen_Kappa": 0.7238,
+        "MCC": 0.7298,
+        "Macro_AUC": 0.9512,
+        "Top2_Accuracy": 0.9391
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.8799,
+          "Precision": 0.9301,
+          "Recall": 0.8216,
+          "Sensitivity": 0.8216,
+          "Specificity": 0.9383,
+          "F1_Score": 0.8725,
+          "PPV": 0.9301,
+          "NPV": 0.8402,
+          "AUC": 0.9599,
+          "Support": 583,
+          "TP": 479,
+          "FP": 36,
+          "FN": 104,
+          "TN": 547
+        },
+        "NORMAL": {
+          "Accuracy": 0.9074,
+          "Precision": 0.7377,
+          "Recall": 0.9759,
+          "Sensitivity": 0.9759,
+          "Specificity": 0.8846,
+          "F1_Score": 0.8402,
+          "PPV": 0.7377,
+          "NPV": 0.991,
+          "AUC": 0.9819,
+          "Support": 291,
+          "TP": 284,
+          "FP": 101,
+          "FN": 7,
+          "TN": 774
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.8593,
+          "Precision": 0.7406,
+          "Recall": 0.6747,
+          "Sensitivity": 0.6747,
+          "Specificity": 0.9211,
+          "F1_Score": 0.7061,
+          "PPV": 0.7406,
+          "NPV": 0.8944,
+          "AUC": 0.9119,
+          "Support": 292,
+          "TP": 197,
+          "FP": 69,
+          "FN": 95,
+          "TN": 805
+        }
+      },
+      "confusion_matrix": [
+        [
+          479,
+          42,
+          62
+        ],
+        [
+          0,
+          284,
+          7
+        ],
+        [
+          36,
+          59,
+          197
+        ]
+      ]
+    }
+  },
+  "mobilenet_v2": {
+    "DS1_Standard": {
+      "overall": {
+        "Accuracy": 0.8651,
+        "Balanced_Accuracy": 0.8648,
+        "Macro_Precision": 0.8738,
+        "Macro_Recall": 0.8648,
+        "Macro_F1": 0.8595,
+        "Weighted_F1": 0.8592,
+        "Cohen_Kappa": 0.7975,
+        "MCC": 0.8059,
+        "Macro_AUC": 0.9666,
+        "Top2_Accuracy": 0.9648
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.8944,
+          "Precision": 0.7899,
+          "Recall": 0.9397,
+          "Sensitivity": 0.9397,
+          "Specificity": 0.8711,
+          "F1_Score": 0.8583,
+          "PPV": 0.7899,
+          "NPV": 0.9655,
+          "AUC": 0.9676,
+          "Support": 116,
+          "TP": 109,
+          "FP": 29,
+          "FN": 7,
+          "TN": 196
+        },
+        "NORMAL": {
+          "Accuracy": 0.9707,
+          "Precision": 0.918,
+          "Recall": 1.0,
+          "Sensitivity": 1.0,
+          "Specificity": 0.9563,
+          "F1_Score": 0.9573,
+          "PPV": 0.918,
+          "NPV": 1.0,
+          "AUC": 0.9993,
+          "Support": 112,
+          "TP": 112,
+          "FP": 10,
+          "FN": 0,
+          "TN": 219
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.8651,
+          "Precision": 0.9136,
+          "Recall": 0.6549,
+          "Sensitivity": 0.6549,
+          "Specificity": 0.9693,
+          "F1_Score": 0.7629,
+          "PPV": 0.9136,
+          "NPV": 0.85,
+          "AUC": 0.933,
+          "Support": 113,
+          "TP": 74,
+          "FP": 7,
+          "FN": 39,
+          "TN": 221
+        }
+      },
+      "confusion_matrix": [
+        [
+          109,
+          0,
+          7
+        ],
+        [
+          0,
+          112,
+          0
+        ],
+        [
+          29,
+          10,
+          74
+        ]
+      ]
+    },
+    "DS2_PA_View": {
+      "overall": {
+        "Accuracy": 0.5722,
+        "Balanced_Accuracy": 0.5722,
+        "Macro_Precision": 0.5159,
+        "Macro_Recall": 0.5722,
+        "Macro_F1": 0.517,
+        "Weighted_F1": 0.517,
+        "Cohen_Kappa": 0.3584,
+        "MCC": 0.3804,
+        "Macro_AUC": 0.8129,
+        "Top2_Accuracy": 0.7851
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.7663,
+          "Precision": 0.6316,
+          "Recall": 0.7174,
+          "Sensitivity": 0.7174,
+          "Specificity": 0.7908,
+          "F1_Score": 0.6718,
+          "PPV": 0.6316,
+          "NPV": 0.8484,
+          "AUC": 0.8678,
+          "Support": 1525,
+          "TP": 1094,
+          "FP": 638,
+          "FN": 431,
+          "TN": 2412
+        },
+        "NORMAL": {
+          "Accuracy": 0.7526,
+          "Precision": 0.5858,
+          "Recall": 0.8793,
+          "Sensitivity": 0.8793,
+          "Specificity": 0.6892,
+          "F1_Score": 0.7032,
+          "PPV": 0.5858,
+          "NPV": 0.9195,
+          "AUC": 0.8833,
+          "Support": 1525,
+          "TP": 1341,
+          "FP": 948,
+          "FN": 184,
+          "TN": 2102
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.6256,
+          "Precision": 0.3303,
+          "Recall": 0.12,
+          "Sensitivity": 0.12,
+          "Specificity": 0.8784,
+          "F1_Score": 0.176,
+          "PPV": 0.3303,
+          "NPV": 0.6663,
+          "AUC": 0.6874,
+          "Support": 1525,
+          "TP": 183,
+          "FP": 371,
+          "FN": 1342,
+          "TN": 2679
+        }
+      },
+      "confusion_matrix": [
+        [
+          1094,
+          199,
+          232
+        ],
+        [
+          45,
+          1341,
+          139
+        ],
+        [
+          593,
+          749,
+          183
+        ]
+      ]
+    },
+    "DS4a_QU_Lung": {
+      "overall": {
+        "Accuracy": 0.74,
+        "Balanced_Accuracy": 0.7466,
+        "Macro_Precision": 0.7761,
+        "Macro_Recall": 0.7466,
+        "Macro_F1": 0.738,
+        "Weighted_F1": 0.7372,
+        "Cohen_Kappa": 0.6125,
+        "MCC": 0.6346,
+        "Macro_AUC": 0.9214,
+        "Top2_Accuracy": 0.9037
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.8276,
+          "Precision": 0.8639,
+          "Recall": 0.6071,
+          "Sensitivity": 0.6071,
+          "Specificity": 0.9479,
+          "F1_Score": 0.7131,
+          "PPV": 0.8639,
+          "NPV": 0.8157,
+          "AUC": 0.9007,
+          "Support": 2395,
+          "TP": 1454,
+          "FP": 229,
+          "FN": 941,
+          "TN": 4164
+        },
+        "NORMAL": {
+          "Accuracy": 0.8047,
+          "Precision": 0.6225,
+          "Recall": 0.9664,
+          "Sensitivity": 0.9664,
+          "Specificity": 0.7302,
+          "F1_Score": 0.7572,
+          "PPV": 0.6225,
+          "NPV": 0.9792,
+          "AUC": 0.9441,
+          "Support": 2140,
+          "TP": 2068,
+          "FP": 1254,
+          "FN": 72,
+          "TN": 3394
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.8477,
+          "Precision": 0.8418,
+          "Recall": 0.6662,
+          "Sensitivity": 0.6662,
+          "Specificity": 0.9378,
+          "F1_Score": 0.7438,
+          "PPV": 0.8418,
+          "NPV": 0.8498,
+          "AUC": 0.9195,
+          "Support": 2253,
+          "TP": 1501,
+          "FP": 282,
+          "FN": 752,
+          "TN": 4253
+        }
+      },
+      "confusion_matrix": [
+        [
+          1454,
+          717,
+          224
+        ],
+        [
+          14,
+          2068,
+          58
+        ],
+        [
+          215,
+          537,
+          1501
+        ]
+      ]
+    },
+    "DS4b_QU_Infection": {
+      "overall": {
+        "Accuracy": 0.7959,
+        "Balanced_Accuracy": 0.8,
+        "Macro_Precision": 0.777,
+        "Macro_Recall": 0.8,
+        "Macro_F1": 0.7791,
+        "Weighted_F1": 0.7982,
+        "Cohen_Kappa": 0.6841,
+        "MCC": 0.6929,
+        "Macro_AUC": 0.9454,
+        "Top2_Accuracy": 0.9365
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.8679,
+          "Precision": 0.9423,
+          "Recall": 0.7839,
+          "Sensitivity": 0.7839,
+          "Specificity": 0.952,
+          "F1_Score": 0.8558,
+          "PPV": 0.9423,
+          "NPV": 0.815,
+          "AUC": 0.955,
+          "Support": 583,
+          "TP": 457,
+          "FP": 28,
+          "FN": 126,
+          "TN": 555
+        },
+        "NORMAL": {
+          "Accuracy": 0.8739,
+          "Precision": 0.6791,
+          "Recall": 0.9381,
+          "Sensitivity": 0.9381,
+          "Specificity": 0.8526,
+          "F1_Score": 0.7879,
+          "PPV": 0.6791,
+          "NPV": 0.9764,
+          "AUC": 0.9727,
+          "Support": 291,
+          "TP": 273,
+          "FP": 129,
+          "FN": 18,
+          "TN": 746
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.8499,
+          "Precision": 0.7097,
+          "Recall": 0.6781,
+          "Sensitivity": 0.6781,
+          "Specificity": 0.9073,
+          "F1_Score": 0.6935,
+          "PPV": 0.7097,
+          "NPV": 0.894,
+          "AUC": 0.9085,
+          "Support": 292,
+          "TP": 198,
+          "FP": 81,
+          "FN": 94,
+          "TN": 793
+        }
+      },
+      "confusion_matrix": [
+        [
+          457,
+          60,
+          66
+        ],
+        [
+          3,
+          273,
+          15
+        ],
+        [
+          25,
+          69,
+          198
+        ]
+      ]
+    }
+  },
+  "inception_v3": {
+    "DS1_Standard": {
+      "overall": {
+        "Accuracy": 0.3402,
+        "Balanced_Accuracy": 0.3333,
+        "Macro_Precision": 0.1134,
+        "Macro_Recall": 0.3333,
+        "Macro_F1": 0.1692,
+        "Weighted_F1": 0.1727,
+        "Cohen_Kappa": 0.0,
+        "MCC": 0.0,
+        "Macro_AUC": 0.5697,
+        "Top2_Accuracy": 0.6716
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.3402,
+          "Precision": 0.3402,
+          "Recall": 1.0,
+          "Sensitivity": 1.0,
+          "Specificity": 0.0,
+          "F1_Score": 0.5077,
+          "PPV": 0.3402,
+          "NPV": 0.0,
+          "AUC": 0.5326,
+          "Support": 116,
+          "TP": 116,
+          "FP": 225,
+          "FN": 0,
+          "TN": 0
+        },
+        "NORMAL": {
+          "Accuracy": 0.6716,
+          "Precision": 0.0,
+          "Recall": 0.0,
+          "Sensitivity": 0.0,
+          "Specificity": 1.0,
+          "F1_Score": 0.0,
+          "PPV": 0.0,
+          "NPV": 0.6716,
+          "AUC": 0.6527,
+          "Support": 112,
+          "TP": 0,
+          "FP": 0,
+          "FN": 112,
+          "TN": 229
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.6686,
+          "Precision": 0.0,
+          "Recall": 0.0,
+          "Sensitivity": 0.0,
+          "Specificity": 1.0,
+          "F1_Score": 0.0,
+          "PPV": 0.0,
+          "NPV": 0.6686,
+          "AUC": 0.5236,
+          "Support": 113,
+          "TP": 0,
+          "FP": 0,
+          "FN": 113,
+          "TN": 228
+        }
+      },
+      "confusion_matrix": [
+        [
+          116,
+          0,
+          0
+        ],
+        [
+          112,
+          0,
+          0
+        ],
+        [
+          113,
+          0,
+          0
+        ]
+      ]
+    },
+    "DS2_PA_View": {
+      "overall": {
+        "Accuracy": 0.3333,
+        "Balanced_Accuracy": 0.3333,
+        "Macro_Precision": 0.1111,
+        "Macro_Recall": 0.3333,
+        "Macro_F1": 0.1667,
+        "Weighted_F1": 0.1667,
+        "Cohen_Kappa": 0.0,
+        "MCC": 0.0,
+        "Macro_AUC": 0.5496,
+        "Top2_Accuracy": 0.6667
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.3333,
+          "Precision": 0.3333,
+          "Recall": 1.0,
+          "Sensitivity": 1.0,
+          "Specificity": 0.0,
+          "F1_Score": 0.5,
+          "PPV": 0.3333,
+          "NPV": 0.0,
+          "AUC": 0.5389,
+          "Support": 1525,
+          "TP": 1525,
+          "FP": 3050,
+          "FN": 0,
+          "TN": 0
+        },
+        "NORMAL": {
+          "Accuracy": 0.6667,
+          "Precision": 0.0,
+          "Recall": 0.0,
+          "Sensitivity": 0.0,
+          "Specificity": 1.0,
+          "F1_Score": 0.0,
+          "PPV": 0.0,
+          "NPV": 0.6667,
+          "AUC": 0.3907,
+          "Support": 1525,
+          "TP": 0,
+          "FP": 0,
+          "FN": 1525,
+          "TN": 3050
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.6667,
+          "Precision": 0.0,
+          "Recall": 0.0,
+          "Sensitivity": 0.0,
+          "Specificity": 1.0,
+          "F1_Score": 0.0,
+          "PPV": 0.0,
+          "NPV": 0.6667,
+          "AUC": 0.7191,
+          "Support": 1525,
+          "TP": 0,
+          "FP": 0,
+          "FN": 1525,
+          "TN": 3050
+        }
+      },
+      "confusion_matrix": [
+        [
+          1525,
+          0,
+          0
+        ],
+        [
+          1525,
+          0,
+          0
+        ],
+        [
+          1525,
+          0,
+          0
+        ]
+      ]
+    },
+    "DS4a_QU_Lung": {
+      "overall": {
+        "Accuracy": 0.3528,
+        "Balanced_Accuracy": 0.3333,
+        "Macro_Precision": 0.1176,
+        "Macro_Recall": 0.3333,
+        "Macro_F1": 0.1739,
+        "Weighted_F1": 0.184,
+        "Cohen_Kappa": 0.0,
+        "MCC": 0.0,
+        "Macro_AUC": 0.5657,
+        "Top2_Accuracy": 0.6847
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.3528,
+          "Precision": 0.3528,
+          "Recall": 1.0,
+          "Sensitivity": 1.0,
+          "Specificity": 0.0,
+          "F1_Score": 0.5216,
+          "PPV": 0.3528,
+          "NPV": 0.0,
+          "AUC": 0.5672,
+          "Support": 2395,
+          "TP": 2395,
+          "FP": 4393,
+          "FN": 0,
+          "TN": 0
+        },
+        "NORMAL": {
+          "Accuracy": 0.6847,
+          "Precision": 0.0,
+          "Recall": 0.0,
+          "Sensitivity": 0.0,
+          "Specificity": 1.0,
+          "F1_Score": 0.0,
+          "PPV": 0.0,
+          "NPV": 0.6847,
+          "AUC": 0.6193,
+          "Support": 2140,
+          "TP": 0,
+          "FP": 0,
+          "FN": 2140,
+          "TN": 4648
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.6681,
+          "Precision": 0.0,
+          "Recall": 0.0,
+          "Sensitivity": 0.0,
+          "Specificity": 1.0,
+          "F1_Score": 0.0,
+          "PPV": 0.0,
+          "NPV": 0.6681,
+          "AUC": 0.5105,
+          "Support": 2253,
+          "TP": 0,
+          "FP": 0,
+          "FN": 2253,
+          "TN": 4535
+        }
+      },
+      "confusion_matrix": [
+        [
+          2395,
+          0,
+          0
+        ],
+        [
+          2140,
+          0,
+          0
+        ],
+        [
+          2253,
+          0,
+          0
+        ]
+      ]
+    },
+    "DS4b_QU_Infection": {
+      "overall": {
+        "Accuracy": 0.5,
+        "Balanced_Accuracy": 0.3333,
+        "Macro_Precision": 0.1667,
+        "Macro_Recall": 0.3333,
+        "Macro_F1": 0.2222,
+        "Weighted_F1": 0.3333,
+        "Cohen_Kappa": 0.0,
+        "MCC": 0.0,
+        "Macro_AUC": 0.5902,
+        "Top2_Accuracy": 0.7504
+      },
+      "per_class": {
+        "COVID": {
+          "Accuracy": 0.5,
+          "Precision": 0.5,
+          "Recall": 1.0,
+          "Sensitivity": 1.0,
+          "Specificity": 0.0,
+          "F1_Score": 0.6667,
+          "PPV": 0.5,
+          "NPV": 0.0,
+          "AUC": 0.5871,
+          "Support": 583,
+          "TP": 583,
+          "FP": 583,
+          "FN": 0,
+          "TN": 0
+        },
+        "NORMAL": {
+          "Accuracy": 0.7504,
+          "Precision": 0.0,
+          "Recall": 0.0,
+          "Sensitivity": 0.0,
+          "Specificity": 1.0,
+          "F1_Score": 0.0,
+          "PPV": 0.0,
+          "NPV": 0.7504,
+          "AUC": 0.6848,
+          "Support": 291,
+          "TP": 0,
+          "FP": 0,
+          "FN": 291,
+          "TN": 875
+        },
+        "PNEUMONIA": {
+          "Accuracy": 0.7496,
+          "Precision": 0.0,
+          "Recall": 0.0,
+          "Sensitivity": 0.0,
+          "Specificity": 1.0,
+          "F1_Score": 0.0,
+          "PPV": 0.0,
+          "NPV": 0.7496,
+          "AUC": 0.4988,
+          "Support": 292,
+          "TP": 0,
+          "FP": 0,
+          "FN": 292,
+          "TN": 874
+        }
+      },
+      "confusion_matrix": [
+        [
+          583,
+          0,
+          0
+        ],
+        [
+          291,
+          0,
+          0
+        ],
+        [
+          292,
+          0,
+          0
+        ]
+      ]
+    }
+  }
+}
