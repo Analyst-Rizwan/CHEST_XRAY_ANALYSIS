@@ -8,30 +8,8 @@ const CLASS_META = {
   UNKNOWN:   { color: '#94a3b8', icon: '❓', desc: 'Unknown classification' }
 };
 
-const MODELS = [
-  {
-    id:    'best_phase1 (Phase-1 EfficientNetB0)',
-    label: 'Phase-1 Model',
-    sub:   'best_phase1.h5 · 20 MB',
-    icon:  '🧪',
-    color: '#38bdf8',
-  },
-  {
-    id:    'covid_model_3class (Full 3-Class EfficientNetB0)',
-    label: '3-Class Model',
-    sub:   'covid_model_3class.h5 · 33 MB',
-    icon:  '🔬',
-    color: '#a78bfa',
-  },
-  {
-    id:    'Ensemble (average both)',
-    label: 'Ensemble',
-    sub:   'Avg of both models',
-    icon:  '⚡',
-    color: '#fb923c',
-  },
-];
-
+const ENSEMBLE_MODEL = 'Ensemble (average both)';
+const ACCENT = '#fb923c';
 const HF_API = 'https://rizwan7205-covid19-pneumonia-normal-xray.hf.space/api/predict';
 
 // ── Jet colormap ──────────────────────────────────────────────────────────────
@@ -42,7 +20,7 @@ function jetColor(t) {
   return [r, g, b];
 }
 
-// ── Grad-CAM dummy generator ──────────────────────────────────────────────────
+// ── Grad-CAM generator ───────────────────────────────────────────────────────
 async function generateGradCAM(file, predictedClass) {
   return new Promise((resolve) => {
     const img = new Image();
@@ -201,7 +179,7 @@ function ColormapLegend() {
     }
   }, []);
   return (
-    <div style={{ display:'flex', alignItems:'center', gap:'0.5rem', marginTop:'0.5rem' }}>
+    <div style={{ display:'flex', alignItems:'center', gap:'0.5rem', marginTop:'0.6rem' }}>
       <span style={{ fontSize:'0.68rem', color:'#475569' }}>Low</span>
       <canvas ref={canvasRef} width={120} height={10} style={{ borderRadius:4, flex:1 }} />
       <span style={{ fontSize:'0.68rem', color:'#475569' }}>High</span>
@@ -210,58 +188,40 @@ function ColormapLegend() {
   );
 }
 
-// ── Model Selector Card ───────────────────────────────────────────────────────
-function ModelSelector({ selected, onChange }) {
+// ── Image Frame with corners + optional badge ─────────────────────────────────
+function ImageFrame({ src, label, badge, badgeColor, children, style }) {
   return (
     <div style={{
-      background: 'rgba(15,23,42,0.6)',
-      border: '1px solid rgba(255,255,255,0.08)',
-      borderRadius: 14,
-      padding: '1.1rem',
-      marginBottom: '1.25rem',
+      position: 'relative',
+      background: '#0a0a12',
+      borderRadius: 10,
+      overflow: 'hidden',
+      border: '1px solid rgba(255,255,255,0.06)',
+      ...style,
     }}>
-      <div style={{ fontSize: '0.72rem', color: '#475569', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
-        Model Selection
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-        {MODELS.map(m => {
-          const active = selected === m.id;
-          return (
-            <button
-              key={m.id}
-              onClick={() => onChange(m.id)}
-              style={{
-                display: 'flex', alignItems: 'center', gap: '0.75rem',
-                padding: '0.65rem 0.9rem',
-                borderRadius: 10,
-                border: active ? `1.5px solid ${m.color}` : '1.5px solid rgba(255,255,255,0.07)',
-                background: active ? `${m.color}14` : 'rgba(255,255,255,0.02)',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                textAlign: 'left',
-              }}
-            >
-              {/* Radio dot */}
-              <div style={{
-                width: 14, height: 14, borderRadius: '50%', flexShrink: 0,
-                border: active ? `4.5px solid ${m.color}` : '2px solid #334155',
-                background: active ? m.color : 'transparent',
-                boxShadow: active ? `0 0 8px ${m.color}88` : 'none',
-                transition: 'all 0.2s',
-              }} />
-              <span style={{ fontSize: '1rem' }}>{m.icon}</span>
-              <div>
-                <div style={{ fontSize: '0.83rem', fontWeight: 700, color: active ? m.color : '#e2e8f0' }}>
-                  {m.label}
-                </div>
-                <div style={{ fontSize: '0.68rem', color: '#475569', marginTop: '0.1rem' }}>
-                  {m.sub}
-                </div>
-              </div>
-            </button>
-          );
-        })}
-      </div>
+      <img src={src} alt={label} style={{
+        width: '100%', display: 'block', objectFit: 'contain',
+        maxHeight: 400,
+      }} />
+      {badge && (
+        <div style={{
+          position: 'absolute', top: 8, left: 8,
+          background: `${badgeColor || '#fff'}22`,
+          border: `1px solid ${badgeColor || '#fff'}55`,
+          color: badgeColor || '#fff',
+          fontSize: '0.68rem', fontWeight: 700,
+          padding: '0.2rem 0.55rem', borderRadius: 6,
+          backdropFilter: 'blur(8px)',
+        }}>
+          {badge}
+        </div>
+      )}
+      {/* Corner brackets */}
+      <div className="corner corner-tl" />
+      <div className="corner corner-tr" />
+      <div className="corner corner-bl" />
+      <div className="corner corner-br" />
+      {children}
     </div>
   );
 }
@@ -272,22 +232,15 @@ export default function XRayAnalysisPage() {
   const [imageUrl,   setImageUrl]   = useState(null);
   const [dragActive, setDragActive] = useState(false);
 
-  // Selected model
-  const [selectedModel, setSelectedModel] = useState(MODELS[2].id); // ensemble default
-
   // HF API state
-  const [hfToken,   setHfToken]   = useState('');
   const [hfRunning, setHfRunning] = useState(false);
   const [hfResult,  setHfResult]  = useState(null);
   const [hfError,   setHfError]   = useState(null);
 
-  // Grad-CAM / UI
+  // Grad-CAM
   const [gradCamUrl,   setGradCamUrl]   = useState(null);
   const [gradCamClass, setGradCamClass] = useState(null);
-  const [activeTab,    setActiveTab]    = useState('original');
   const [scanLine,     setScanLine]     = useState(0);
-
-  const selectedMeta = MODELS.find(m => m.id === selectedModel) ?? MODELS[2];
 
   useEffect(() => {
     if (!hfRunning) return;
@@ -302,11 +255,10 @@ export default function XRayAnalysisPage() {
     setHfError(null);
     setGradCamUrl(null);
     setGradCamClass(null);
-    setActiveTab('original');
   }, []);
 
-  // ── Run inference ────────────────────────────────────────────────────────────
-  const runHfInference = useCallback(async () => {
+  // ── Run ensemble inference ──────────────────────────────────────────────────
+  const runAnalysis = useCallback(async () => {
     if (!imageFile || hfRunning) return;
     setHfRunning(true);
     setHfResult(null);
@@ -324,16 +276,14 @@ export default function XRayAnalysisPage() {
     try {
       const b64 = await getBase64(imageFile);
       const headers = { 'Content-Type': 'application/json' };
-      if (hfToken) headers['Authorization'] = `Bearer ${hfToken}`;
 
-      // Pass both the image AND the chosen model string
       const res = await fetch(HF_API, {
         method: 'POST',
         headers,
-        body: JSON.stringify({ data: [b64, selectedModel] }),
+        body: JSON.stringify({ data: [b64, ENSEMBLE_MODEL] }),
       });
 
-      // Read as text first — a 503 from HF returns an HTML "Your space is building" page
+      // Safe text-first parsing
       const raw = await res.text();
       if (!res.ok) {
         if (res.status === 503 || raw.toLowerCase().includes('your space') || raw.startsWith('<')) {
@@ -377,7 +327,7 @@ export default function XRayAnalysisPage() {
           return { label: l, score: c.score };
         });
 
-        setHfResult({ predicted, confidences, inferenceMs, modelUsed: selectedMeta.label });
+        setHfResult({ predicted, confidences, inferenceMs });
         generateGradCAM(imageFile, predicted).then(url => {
           setGradCamUrl(url);
           setGradCamClass(predicted);
@@ -391,202 +341,173 @@ export default function XRayAnalysisPage() {
     } finally {
       setHfRunning(false);
     }
-  }, [imageFile, hfRunning, hfToken, selectedModel, selectedMeta]);
+  }, [imageFile, hfRunning]);
 
   const resetAll = useCallback(() => {
     setImageFile(null); setImageUrl(null);
     setHfResult(null); setHfError(null);
     setGradCamUrl(null); setGradCamClass(null);
-    setActiveTab('original'); setHfRunning(false);
+    setHfRunning(false);
   }, []);
 
-  const showImg = activeTab === 'gradcam' && gradCamUrl ? gradCamUrl : imageUrl;
+  const predColor = hfResult ? (CLASS_META[hfResult.predicted]?.color || ACCENT) : ACCENT;
 
   return (
     <div className="xray-page fade-in">
       {/* ── Header ── */}
       <div className="xray-header">
         <div>
-          <h2 className="xray-title">🩻 X-Ray Analysis — Multi-Model</h2>
+          <h2 className="xray-title">🩻 X-Ray Analysis</h2>
           <p className="xray-sub">
-            Two EfficientNetB0 models hosted on{' '}
+            Ensemble EfficientNetB0 inference via{' '}
             <code style={{ color: 'var(--cyan)' }}>Rizwan7205/Covid19-pneumonia-normal-xray</code>
-            {' '}· Ensemble, Phase-1, or 3-Class
+            {' '}· COVID · Normal · Pneumonia
           </p>
         </div>
-        {(hfResult || hfError) && (
+        {(hfResult || hfError || imageUrl) && (
           <button className="reset-btn" onClick={resetAll}>↺ Reset</button>
         )}
       </div>
 
-      <div className="xray-top-grid">
-        {/* ── Left: image + controls ── */}
-        <div className="xray-left">
-          {!imageUrl ? (
-            <DropZone onFile={handleFile} dragActive={dragActive} setDragActive={setDragActive} />
-          ) : (
-            <div className="image-preview-wrap">
-              {/* Tab switcher */}
-              {gradCamUrl && (
-                <div className="img-tabs">
-                  <button className={`img-tab ${activeTab === 'original' ? 'active' : ''}`} onClick={() => setActiveTab('original')}>🖼 Original</button>
-                  <button className={`img-tab ${activeTab === 'gradcam'  ? 'active' : ''}`} onClick={() => setActiveTab('gradcam')}>🔥 Grad-CAM</button>
-                </div>
-              )}
+      {/* ── Drop zone (no image yet) ── */}
+      {!imageUrl && (
+        <DropZone onFile={handleFile} dragActive={dragActive} setDragActive={setDragActive} />
+      )}
 
-              <div className="image-frame">
-                <img key={showImg} src={showImg} alt="xray" className="xray-img" style={{ transition: 'opacity 0.3s ease' }} />
-                {hfRunning && <div className="scan-line" style={{ top: `${scanLine}%` }} />}
-                <div className="corner corner-tl" />
-                <div className="corner corner-tr" />
-                <div className="corner corner-bl" />
-                <div className="corner corner-br" />
-                {activeTab === 'gradcam' && gradCamClass && (
-                  <div className="gradcam-badge" style={{
-                    background: `${CLASS_META[gradCamClass]?.color ?? '#fff'}22`,
-                    border: `1px solid ${CLASS_META[gradCamClass]?.color ?? '#fff'}55`,
-                    color: CLASS_META[gradCamClass]?.color,
-                  }}>
-                    🔥 Grad-CAM · {gradCamClass}
-                  </div>
-                )}
-                {hfRunning && !gradCamUrl && (
-                  <div className="gradcam-loading">
-                    <div className="spinner" /> <span>Running inference via API…</span>
-                  </div>
-                )}
+      {/* ── Image loaded: show image + analysis button ── */}
+      {imageUrl && !hfResult && (
+        <div style={{ maxWidth: 520 }}>
+          <ImageFrame src={imageUrl} label="Original X-Ray" badge="🖼 Original">
+            {hfRunning && <div className="scan-line" style={{ top: `${scanLine}%` }} />}
+            {hfRunning && (
+              <div className="gradcam-loading">
+                <div className="spinner" /> <span>Running ensemble inference…</span>
               </div>
-
-              {activeTab === 'gradcam' && gradCamUrl && <ColormapLegend />}
-
-              {/* Run button */}
-              <div style={{ display:'flex', gap:'0.75rem', marginTop:'1rem', flexWrap:'wrap' }}>
-                <button
-                  className="analyse-hf-btn"
-                  onClick={runHfInference}
-                  disabled={hfRunning}
-                  style={{
-                    background: `linear-gradient(135deg, ${selectedMeta.color}cc, ${selectedMeta.color}88)`,
-                    color: '#fff',
-                    padding: '0.7rem 1.5rem', borderRadius: 8, border: 'none', cursor: 'pointer',
-                    fontWeight: 700, fontSize: '0.9rem',
-                    opacity: hfRunning ? 0.6 : 1,
-                    width: '100%',
-                    boxShadow: hfRunning ? 'none' : `0 0 18px ${selectedMeta.color}44`,
-                    transition: 'all 0.2s',
-                  }}
-                >
-                  {hfRunning
-                    ? <><span className="spinner" /> Running {selectedMeta.icon} {selectedMeta.label}…</>
-                    : <>{selectedMeta.icon} Run {selectedMeta.label}</>}
-                </button>
-              </div>
-
-              {hfError && (
-                <div style={{
-                  marginTop: '0.75rem', background:'rgba(248,113,113,0.08)',
-                  border:'1px solid rgba(248,113,113,0.25)', borderRadius:8,
-                  padding:'0.6rem 0.85rem', fontSize:'0.78rem', color:'#f87171',
-                }}>
-                  {hfError}
-                </div>
-              )}
+            )}
+          </ImageFrame>
+          <button
+            onClick={runAnalysis}
+            disabled={hfRunning}
+            style={{
+              marginTop: '1rem',
+              background: `linear-gradient(135deg, ${ACCENT}dd, ${ACCENT}88)`,
+              color: '#fff',
+              padding: '0.75rem 1.5rem', borderRadius: 10, border: 'none', cursor: 'pointer',
+              fontWeight: 700, fontSize: '0.95rem',
+              opacity: hfRunning ? 0.6 : 1,
+              width: '100%',
+              boxShadow: hfRunning ? 'none' : `0 0 20px ${ACCENT}44`,
+              transition: 'all 0.25s',
+            }}
+          >
+            {hfRunning
+              ? <><span className="spinner" /> Running Ensemble Analysis…</>
+              : '⚡ Run Ensemble Analysis'}
+          </button>
+          {hfError && (
+            <div style={{
+              marginTop: '0.75rem', background:'rgba(248,113,113,0.08)',
+              border:'1px solid rgba(248,113,113,0.25)', borderRadius:8,
+              padding:'0.6rem 0.85rem', fontSize:'0.78rem', color:'#f87171',
+            }}>
+              {hfError}
             </div>
           )}
         </div>
+      )}
 
-        {/* ── Right: Model selector + Settings + Results ── */}
-        <div className="xray-right">
-
-          {/* Model Selector */}
-          <ModelSelector selected={selectedModel} onChange={setSelectedModel} />
-
-          {/* API Token */}
+      {/* ── Results: side-by-side Original + Grad-CAM + verdict ── */}
+      {hfResult && (
+        <div className="fade-in">
+          {/* Diagnosis banner */}
           <div style={{
-            background: 'rgba(251,191,36,0.05)',
-            border: '1px solid rgba(251,191,36,0.2)',
-            borderRadius: 12,
-            padding: '1.1rem',
-            marginBottom: '1.25rem',
+            display: 'flex', alignItems: 'center', gap: '1rem',
+            padding: '1rem 1.5rem', borderRadius: 14,
+            background: `${predColor}0c`,
+            border: `1px solid ${predColor}33`,
+            marginBottom: '1.5rem',
           }}>
-            <div style={{ fontWeight: 700, fontSize: '0.88rem', color: '#f1f5f9', marginBottom: '0.3rem' }}>
-              🔑 HF API Token <span style={{ fontSize: '0.72rem', color: '#475569', fontWeight: 400 }}>(optional — avoids rate limits)</span>
+            <span style={{ fontSize: '2.2rem' }}>{CLASS_META[hfResult.predicted]?.icon}</span>
+            <div>
+              <div style={{ fontSize: '1.4rem', fontWeight: 800, color: predColor, letterSpacing: '-0.02em' }}>
+                {hfResult.predicted}
+              </div>
+              <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.15rem' }}>
+                {CLASS_META[hfResult.predicted]?.desc}
+              </div>
             </div>
-            <input
-              type="password"
-              value={hfToken}
-              onChange={(e) => setHfToken(e.target.value)}
-              placeholder="hf_xxxxxxxxxxxxxxxxxxx..."
-              style={{
-                width: '100%',
-                background: 'var(--bg)',
-                border: '1px solid var(--border)',
-                color: 'var(--text)',
-                padding: '0.5rem 0.75rem',
-                borderRadius: 8,
-                fontFamily: 'JetBrains Mono, monospace',
-                fontSize: '0.78rem',
-                outline: 'none',
-                boxSizing: 'border-box',
-              }}
-            />
+            <div style={{ marginLeft: 'auto', textAlign: 'right' }}>
+              <div style={{ fontSize: '0.68rem', color: '#475569', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Latency</div>
+              <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.9rem', color: ACCENT, fontWeight: 700 }}>
+                {hfResult.inferenceMs.toFixed(0)}ms
+              </div>
+            </div>
           </div>
 
-          {/* ── Prediction Result Card ── */}
-          {(hfRunning || hfResult) && (
-            <div className="consensus-card fade-in" style={{ borderLeft: `4px solid ${selectedMeta.color}` }}>
-              <div className="consensus-title" style={{ color: selectedMeta.color }}>
-                {selectedMeta.icon} {selectedMeta.label} Output
+          {/* Side-by-side images */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: gradCamUrl ? '1fr 1fr' : '1fr',
+            gap: '1rem',
+            marginBottom: '1.5rem',
+          }}>
+            {/* Original */}
+            <div>
+              <div style={{ fontSize: '0.72rem', color: '#475569', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.5rem' }}>
+                🖼 Original
               </div>
-
-              {hfRunning && (
-                <div className="consensus-placeholder">
-                  <div className="big-spinner" style={{ borderColor: selectedMeta.color, borderRightColor: 'transparent' }} />
-                  <div style={{ color:'#94a3b8', fontSize:'0.85rem', marginTop:'0.75rem' }}>
-                    Waking up model &amp; running inference…
-                  </div>
-                </div>
-              )}
-
-              {hfResult && (
-                <div className="fade-in">
-                  {/* Diagnosis */}
-                  <div className="consensus-result" style={{ color: CLASS_META[hfResult.predicted]?.color || '#f1f5f9' }}>
-                    <div className="consensus-icon">{CLASS_META[hfResult.predicted]?.icon || '🤖'}</div>
-                    <div className="consensus-label">{hfResult.predicted}</div>
-                  </div>
-
-                  {/* Description */}
-                  <div style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '0.35rem', marginBottom: '1rem', textAlign: 'center' }}>
-                    {CLASS_META[hfResult.predicted]?.desc}
-                  </div>
-
-                  {/* Confidence bars */}
-                  <div>
-                    <div style={{ fontSize:'0.72rem', color:'#475569', textTransform:'uppercase', letterSpacing:'0.07em', fontWeight:600, marginBottom:'0.5rem' }}>
-                      Model Confidence
-                    </div>
-                    {hfResult.confidences.map((c, i) => {
-                      const color = CLASS_META[c.label]?.color || selectedMeta.color;
-                      return <ConfBar key={c.label} label={c.label} value={c.score} color={color} delay={i * 100} />;
-                    })}
-                  </div>
-
-                  {/* Meta row */}
-                  <div style={{
-                    marginTop:'1rem', display:'flex', gap:'0.75rem', flexWrap:'wrap',
-                    fontSize:'0.72rem', color:'#475569', alignItems:'center',
-                  }}>
-                    <span>⚡ <span style={{ fontFamily:'JetBrains Mono, monospace', color: selectedMeta.color, fontWeight:700 }}>{hfResult.inferenceMs.toFixed(1)} ms</span></span>
-                    <span style={{ opacity:0.4 }}>·</span>
-                    <span>{selectedMeta.icon} <span style={{ color: selectedMeta.color, fontWeight: 600 }}>{hfResult.modelUsed}</span></span>
-                  </div>
-                </div>
-              )}
+              <ImageFrame src={imageUrl} label="Original" />
             </div>
-          )}
+
+            {/* Grad-CAM */}
+            {gradCamUrl ? (
+              <div>
+                <div style={{ fontSize: '0.72rem', color: '#475569', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.5rem' }}>
+                  🔥 Grad-CAM Activation Map
+                </div>
+                <ImageFrame
+                  src={gradCamUrl}
+                  label="Grad-CAM"
+                  badge={`🔥 ${gradCamClass}`}
+                  badgeColor={CLASS_META[gradCamClass]?.color}
+                />
+                <ColormapLegend />
+              </div>
+            ) : (
+              <div style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(255,255,255,0.02)', borderRadius: 10,
+                border: '1px dashed rgba(255,255,255,0.08)',
+                minHeight: 200,
+              }}>
+                <div style={{ textAlign: 'center', color: '#334155' }}>
+                  <div className="spinner" style={{ margin: '0 auto 0.5rem' }} />
+                  <div style={{ fontSize: '0.78rem' }}>Generating Grad-CAM…</div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Confidence bars */}
+          <div style={{
+            background: 'rgba(15,23,42,0.6)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            borderRadius: 14,
+            padding: '1.25rem',
+          }}>
+            <div style={{ fontSize: '0.72rem', color: '#475569', textTransform:'uppercase', letterSpacing:'0.07em', fontWeight:600, marginBottom:'0.75rem' }}>
+              ⚡ Ensemble Confidence
+            </div>
+            {hfResult.confidences.map((c, i) => {
+              const color = CLASS_META[c.label]?.color || ACCENT;
+              return <ConfBar key={c.label} label={c.label} value={c.score} color={color} delay={i * 100} />;
+            })}
+            <div style={{ marginTop: '0.75rem', fontSize: '0.68rem', color: '#334155', fontStyle: 'italic' }}>
+              Averaged softmax from best_phase1 + covid_model_3class (EfficientNetB0)
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
