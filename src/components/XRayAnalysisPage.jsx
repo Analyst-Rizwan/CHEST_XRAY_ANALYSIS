@@ -277,56 +277,34 @@ export default function XRayAnalysisPage() {
       const b64 = await getBase64(imageFile);
       const headers = { 'Content-Type': 'application/json' };
 
-      // ── Gradio 5+ API: step 1 — submit ─────────────────────────────────
-      const submitRes = await fetch(`${HF_BASE}/call/predict`, {
+      // ── /run/predict — universal sync endpoint (all Gradio versions) ────
+      const res = await fetch(`${HF_BASE}/run/predict`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ data: [b64, ENSEMBLE_MODEL] }),
       });
 
-      const submitText = await submitRes.text();
-      if (!submitRes.ok) {
-        if (submitRes.status === 503 || submitText.toLowerCase().includes('your space') || submitText.startsWith('<')) {
+      const raw = await res.text();
+      if (!res.ok) {
+        if (res.status === 503 || raw.toLowerCase().includes('your space') || raw.startsWith('<')) {
           throw new Error('🔄 HF Space is still building or sleeping — please wait 1–2 minutes and try again.');
         }
-        let errMsg = 'HF Space submit failed.';
-        try { errMsg = JSON.parse(submitText).error || errMsg; } catch {}
+        let errMsg = 'HF Space request failed.';
+        try { errMsg = JSON.parse(raw).error || errMsg; } catch {}
         throw new Error(errMsg);
       }
-      let eventId;
-      try { eventId = JSON.parse(submitText).event_id; } catch {
+      let payload;
+      try { payload = JSON.parse(raw); } catch {
         throw new Error('🔄 HF Space returned an unexpected response — it may still be starting up.');
-      }
-      if (!eventId) throw new Error('No event_id returned from HF Space.');
-
-      // ── Gradio 5+ API: step 2 — read SSE stream ────────────────────────
-      const streamRes = await fetch(`${HF_BASE}/call/predict/${eventId}`);
-      if (!streamRes.ok) throw new Error(`HF stream error: ${streamRes.status}`);
-
-      const sseText = await streamRes.text();
-      // Parse SSE: find all "data: ..." lines and take the last non-null one
-      const dataLines = sseText
-        .split('\n')
-        .filter(l => l.startsWith('data:'))
-        .map(l => l.slice(5).trim())
-        .filter(l => l && l !== 'null');
-      if (!dataLines.length) throw new Error('No data received from HF Space.');
-
-      let out;
-      try {
-        const parsed = JSON.parse(dataLines[dataLines.length - 1]);
-        // Gradio 5 wraps result in an array: [labelOutput]
-        out = Array.isArray(parsed) ? parsed[0] : parsed;
-      } catch {
-        throw new Error('Could not parse HF Space response.');
       }
 
       const inferenceMs = performance.now() - start;
+      const out = payload.data?.[0];
 
       let results = [];
       if (out && out.confidences) {
         results = out.confidences.map(c => ({ label: c.label, score: c.confidence ?? c.score }));
-      } else if (out && typeof out === 'object') {
+      } else if (out && typeof out === 'object' && !Array.isArray(out)) {
         results = Object.entries(out).map(([label, score]) => ({ label, score }));
       } else {
         throw new Error('Unexpected output format from Gradio API.');
