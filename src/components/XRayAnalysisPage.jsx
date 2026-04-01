@@ -333,8 +333,20 @@ export default function XRayAnalysisPage() {
         body: JSON.stringify({ data: [b64, selectedModel] }),
       });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'HF Space request failed — make sure it is running and built.');
+      // Read as text first — a 503 from HF returns an HTML "Your space is building" page
+      const raw = await res.text();
+      if (!res.ok) {
+        if (res.status === 503 || raw.toLowerCase().includes('your space') || raw.startsWith('<')) {
+          throw new Error('🔄 HF Space is still building or sleeping — please wait 1–2 minutes and try again.');
+        }
+        let errMsg = 'HF Space request failed.';
+        try { errMsg = JSON.parse(raw).error || errMsg; } catch {}
+        throw new Error(errMsg);
+      }
+      let data;
+      try { data = JSON.parse(raw); } catch {
+        throw new Error('🔄 HF Space returned an unexpected response — it may still be starting up. Try again in a minute.');
+      }
 
       const inferenceMs = performance.now() - start;
       const out = data.data[0];
